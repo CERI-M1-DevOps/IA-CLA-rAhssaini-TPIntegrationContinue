@@ -253,6 +253,54 @@ public class ListeSimpleTest {
         assertEquals(listeATester.toString(), "ListeSimple(Noeud(1), Noeud(2), Noeud(3), Noeud(4), Noeud(5))");
         listeATester.echanger(r1, r2);
         System.out.println(listeATester);
+    
         assertEquals(listeATester.toString(), "ListeSimple(Noeud(4), Noeud(2), Noeud(3), Noeud(1), Noeud(5))");
+    }
+
+    // --- NOUVEAUX TESTS POUR 100% COVERAGE ---
+
+    @Test
+    public void testModifiePremierNonExistant() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.modifiePremier(99, 100); 
+        assertEquals(2, listeATester.getSize());
+    }
+
+    @Test
+    public void testSupprimePremierTete() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.supprimePremier(2); 
+        assertEquals(1, listeATester.getSize());
+    }
+
+    @Test
+    public void testSupprimePremierMilieuEtNonExistant() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.supprimePremier(2); 
+        listeATester.supprimePremier(99); 
+        assertEquals(2, listeATester.getSize());
+    }
+
+    @Test
+    public void testEchangerMemeNoeudEtTete() {
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        
+        Noeud noeudTete = listeATester.tete; 
+        Noeud noeudMilieu = listeATester.tete.getSuivant(); 
+        
+        listeATester.echanger(noeudMilieu, noeudMilieu);
+        listeATester.echanger(noeudTete, noeudMilieu);
+        
+        Noeud nouvelleTete = listeATester.tete;
+        Noeud autreNoeud = listeATester.tete.getSuivant();
+        listeATester.echanger(autreNoeud, nouvelleTete);
+        
+        assertEquals(3, listeATester.getSize());
     }
 }
