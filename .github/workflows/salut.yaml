@@ -8,7 +8,7 @@ jobs:
       - name: Hello #une tâche pour saluer
         env:
           personneASaluer: 'Mon voisin Totoro'
-        run: echo "Bonjour ${{personneASaluer}}"
+        run: echo "Bonjour ${personneASaluer}"
       - name: L'heure de salutation #affiche l'heure de la précédente tâche
         run: echo "L'heure était $(date)."
 
